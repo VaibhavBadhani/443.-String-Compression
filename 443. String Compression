@@ -1,26 +1,81 @@
+// class Solution {
+// public:
+// int compress(vector<char>& v) {
+        
+//         int cnt = 1;
+
+//         char prev = v[0];
+
+//         int n = v.size();
+
+//         vector<char>rejult;
+
+//         for(int i = 1 ;i < n ; i++){
+//             if(v[i] == prev){
+//                 cnt++;
+//             }else{
+                
+
+//                 if(cnt == 1){
+//                     rejult.push_back(prev);
+//                 }
+//                 else if(cnt<=9){
+//                     rejult.push_back(prev);
+//                     char ch = '0'+cnt;
+//                     rejult.push_back(ch);
+//                 }
+//                 else{
+//                     rejult.push_back(prev);
+//                     string temp = to_string(cnt);
+//                     int j = 0;
+//                     while(j<temp.size()){
+//                         rejult.push_back(temp[j++]);
+//                     }
+//                 }
+                
+//                 prev=v[i];
+//                 cnt=1;
+//             }
+//         }
+//         if(cnt == 1 ){
+//             rejult.push_back(prev);
+//         }
+//         else if(cnt<=9){
+//             rejult.push_back(prev);
+//             char ch = '0'+cnt;
+//             rejult.push_back(ch);
+//         }
+//         else{
+//             rejult.push_back(prev);
+//             string temp = to_string(cnt);
+//             int j = 0;
+//             while(j<temp.size()){
+//                 rejult.push_back(temp[j++]);
+//             }
+//         }
+
+
+//         v=rejult;
+      
+//         return rejult.size();
+//     }
+//};
 class Solution {
-    public int compress(char[] chars) {
-        int i=0;
-        int n=chars.length;
-        int j=0;
-        if(n==1)
-            return 1;
+public:
+    int compress(vector<char>& chars) {
+        int i=0 ,n= chars.size(),j=0;
+        if(n==1){ return 1; }
         while(i<n){
-            int count=1;
-            char charac=chars[i];
-            while(i+1<n && chars[i]==chars[i+1]){
-                count++;
-                i++;
-            }
-            if(count==1){
-                chars[j++]=charac;
-            }
-            else{
-                if(count>1){
-                    chars[j++]=charac;
-                    String counterstring=count+"";
-                    for(int r=0;r<counterstring.length();r++){
-                        chars[j++]=counterstring.charAt(r);
+            int count =1;char ch=chars[i];
+            while(i+1<n&&chars[i]==chars[i+1]){
+                count++;i++;
+            }if(count==1){ chars[j++]=ch; }
+            else
+            {
+                if(count>1){ chars[j++]=ch;
+                string str = to_string(count);
+                    for (char c : str) {
+                        chars[j++]=c;
                     }
                 }
             }
@@ -28,4 +83,26 @@ class Solution {
         }
         return j;
     }
-}
+};                            //javaaaaaaaaaaaaaaaaa
+// class Solution {
+//     public int compress(char[] chars) {
+//         int i=0,n=chars.length,j=0;
+//         if(n==1)
+//             return 1;
+//         while(i<n){int count=1;  char charac=chars[i];
+//             while(i+1<n && chars[i]==chars[i+1]){ count++; i++; }
+//             if(count==1){ chars[j++]=charac; }
+//             else{
+//                 if(count>1){
+//                     chars[j++]=charac;
+//                     String counterstring=count+"";
+//                     for(int r=0;r<counterstring.length();r++){
+//                         chars[j++]=counterstring.charAt(r);
+//                     }
+//                 }
+//             }
+//             i++;
+//         }
+//         return j;
+//     }
+// }
